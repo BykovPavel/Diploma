@@ -1,6 +1,7 @@
 .gradle
 build/
 !gradle/wrapper/gradle-wrapper.jar
+!artifacts/aqa-shop.jar
 !**/src/main/**/build/
 !**/src/test/**/build/
 
