@@ -45,4 +45,5 @@ test {
     systemProperty 'datasource.url', System.getProperty('datasource.url', 'jdbc:postgresql://localhost:5432/app')
     systemProperty 'datasource.user', System.getProperty('datasource.user', 'app')
     systemProperty 'datasource.password', System.getProperty('datasource.password', 'pass')
+    systemProperty 'datasource.page', System.getProperty('datasource.page', 'http://localhost:8080/')
 }

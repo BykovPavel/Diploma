@@ -28,7 +28,7 @@ public class BuyTests {
 
     @BeforeEach
     public void setUp() {
-        startPage = open("http://localhost:8080/", StartPage.class);
+        startPage = open(System.getProperty("datasource.page"), StartPage.class);
     }
 
     @AfterEach
@@ -43,8 +43,8 @@ public class BuyTests {
         val month = DataHelper.getValidMonth();
         val year = DataHelper.getValidYear();
         val holder = DataHelper.getValidHolder();
-        val Cvv = DataHelper.getValidCvv();
-        buyPage.fillForm(cardNumber, month, year, holder, Cvv);
+        val сvv = DataHelper.getValidCvv();
+        buyPage.fillForm(cardNumber, month, year, holder, сvv);
         buyPage.checkSuccessfulNotification();
         val expected = DataHelper.getFirstCardStatus();
         val actual = SQLHelper.getBuyStatus();
@@ -55,12 +55,12 @@ public class BuyTests {
     @Test
     void shouldDenyEmptyFields() {
         buyPage = startPage.payWithCard();
-        val cardNumber = DataHelper.getEmptyCard();
-        val month = DataHelper.getEmptyMonth();
-        val year = DataHelper.getEmptyYear();
-        val holder = DataHelper.getEmptyHolder();
-        val Cvv = DataHelper.getEmptyCvv();
-        buyPage.fillForm(cardNumber, month, year, holder, Cvv);
+        val cardNumber = DataHelper.getEmptyFieldValue();
+        val month = DataHelper.getEmptyFieldValue();
+        val year = DataHelper.getEmptyFieldValue();
+        val holder = DataHelper.getEmptyFieldValue();
+        val сvv = DataHelper.getEmptyFieldValue();
+        buyPage.fillForm(cardNumber, month, year, holder, сvv);
         buyPage.checkMandatoryFieldError();
     }
 
@@ -68,12 +68,12 @@ public class BuyTests {
     @Test
     void shouldDenyEmptyCardField() {
         buyPage = startPage.payWithCard();
-        val cardNumber = DataHelper.getEmptyCard();
+        val cardNumber = DataHelper.getEmptyFieldValue();
         val month = DataHelper.getValidMonth();
         val year = DataHelper.getValidYear();
         val holder = DataHelper.getValidHolder();
-        val Cvv = DataHelper.getValidCvv();
-        buyPage.fillForm(cardNumber, month, year, holder, Cvv);
+        val сvv = DataHelper.getValidCvv();
+        buyPage.fillForm(cardNumber, month, year, holder, сvv);
         buyPage.checkMandatoryFieldError();
     }
 
@@ -84,9 +84,9 @@ public class BuyTests {
         val month = DataHelper.getValidMonth();
         val year = DataHelper.getValidYear();
         val holder = DataHelper.getValidHolder();
-        val Cvv = DataHelper.getValidCvv();
-        buyPage.fillForm(cardNumber, month, year, holder, Cvv);
-        buyPage.checkSuccessfulNotification();
+        val сvv = DataHelper.getValidCvv();
+        buyPage.fillForm(cardNumber, month, year, holder, сvv);
+        buyPage.checkErrorNotification();
         val expected = DataHelper.getSecondCardStatus();
         val actual = SQLHelper.getBuyStatus();
         assertEquals(expected, actual);
@@ -99,8 +99,8 @@ public class BuyTests {
         val month = DataHelper.getValidMonth();
         val year = DataHelper.getValidYear();
         val holder = DataHelper.getValidHolder();
-        val Cvv = DataHelper.getValidCvv();
-        buyPage.fillForm(cardNumber, month, year, holder, Cvv);
+        val сvv = DataHelper.getValidCvv();
+        buyPage.fillForm(cardNumber, month, year, holder, сvv);
         buyPage.checkErrorNotification();
     }
 
@@ -111,8 +111,8 @@ public class BuyTests {
         val month = DataHelper.getValidMonth();
         val year = DataHelper.getValidYear();
         val holder = DataHelper.getValidHolder();
-        val Cvv = DataHelper.getValidCvv();
-        buyPage.fillForm(cardNumber, month, year, holder, Cvv);
+        val сvv = DataHelper.getValidCvv();
+        buyPage.fillForm(cardNumber, month, year, holder, сvv);
         buyPage.checkWrongFormatError();
     }
 
@@ -123,8 +123,8 @@ public class BuyTests {
         val month = DataHelper.getValidMonth();
         val year = DataHelper.getValidYear();
         val holder = DataHelper.getValidHolder();
-        val Cvv = DataHelper.getValidCvv();
-        buyPage.fillForm(cardNumber, month, year, holder, Cvv);
+        val сvv = DataHelper.getValidCvv();
+        buyPage.fillForm(cardNumber, month, year, holder, сvv);
         buyPage.checkWrongFormatError();
     }
 
@@ -135,8 +135,8 @@ public class BuyTests {
         val month = DataHelper.getValidMonth();
         val year = DataHelper.getValidYear();
         val holder = DataHelper.getValidHolder();
-        val Cvv = DataHelper.getValidCvv();
-        buyPage.fillForm(cardNumber, month, year, holder, Cvv);
+        val сvv = DataHelper.getValidCvv();
+        buyPage.fillForm(cardNumber, month, year, holder, сvv);
         buyPage.checkInvalidCharactersError();
     }
 
@@ -148,8 +148,8 @@ public class BuyTests {
         val month = DataHelper.getThirteenthMonth();
         val year = DataHelper.getValidYear();
         val holder = DataHelper.getValidHolder();
-        val Cvv = DataHelper.getValidCvv();
-        buyPage.fillForm(cardNumber, month, year, holder, Cvv);
+        val сvv = DataHelper.getValidCvv();
+        buyPage.fillForm(cardNumber, month, year, holder, сvv);
         buyPage.checkWrongCardExpirationError();
     }
 
@@ -160,8 +160,8 @@ public class BuyTests {
         val month = DataHelper.getNullMonth();
         val year = DataHelper.getValidYear();
         val holder = DataHelper.getValidHolder();
-        val Cvv = DataHelper.getValidCvv();
-        buyPage.fillForm(cardNumber, month, year, holder, Cvv);
+        val сvv = DataHelper.getValidCvv();
+        buyPage.fillForm(cardNumber, month, year, holder, сvv);
         buyPage.checkWrongCardExpirationError();
     }
 
@@ -172,8 +172,8 @@ public class BuyTests {
         val month = DataHelper.getInvalidFormatMonth();
         val year = DataHelper.getValidYear();
         val holder = DataHelper.getValidHolder();
-        val Cvv = DataHelper.getValidCvv();
-        buyPage.fillForm(cardNumber, month, year, holder, Cvv);
+        val сvv = DataHelper.getValidCvv();
+        buyPage.fillForm(cardNumber, month, year, holder, сvv);
         buyPage.checkWrongFormatError();
     }
 
@@ -184,8 +184,8 @@ public class BuyTests {
         val month = DataHelper.getContainingTextMonth();
         val year = DataHelper.getValidYear();
         val holder = DataHelper.getValidHolder();
-        val Cvv = DataHelper.getValidCvv();
-        buyPage.fillForm(cardNumber, month, year, holder, Cvv);
+        val сvv = DataHelper.getValidCvv();
+        buyPage.fillForm(cardNumber, month, year, holder, сvv);
         buyPage.checkInvalidCharactersError();
     }
 
@@ -194,10 +194,10 @@ public class BuyTests {
         buyPage = startPage.payWithCard();
         val cardNumber = DataHelper.getFirstCard();
         val month = DataHelper.getValidMonth();
-        val year = DataHelper.getEmptyYear();
+        val year = DataHelper.getEmptyFieldValue();
         val holder = DataHelper.getValidHolder();
-        val Cvv = DataHelper.getValidCvv();
-        buyPage.fillForm(cardNumber, month, year, holder, Cvv);
+        val сvv = DataHelper.getValidCvv();
+        buyPage.fillForm(cardNumber, month, year, holder, сvv);
         buyPage.checkMandatoryFieldError();
     }
 
@@ -208,8 +208,8 @@ public class BuyTests {
         val month = DataHelper.getValidMonth();
         val year = DataHelper.getInvalidYear();
         val holder = DataHelper.getValidHolder();
-        val Cvv = DataHelper.getValidCvv();
-        buyPage.fillForm(cardNumber, month, year, holder, Cvv);
+        val сvv = DataHelper.getValidCvv();
+        buyPage.fillForm(cardNumber, month, year, holder, сvv);
         buyPage.checkCardExpiredError();
     }
 
@@ -220,8 +220,8 @@ public class BuyTests {
         val month = DataHelper.getValidMonth();
         val year = DataHelper.getInvalidFormatYear();
         val holder = DataHelper.getValidHolder();
-        val Cvv = DataHelper.getValidCvv();
-        buyPage.fillForm(cardNumber, month, year, holder, Cvv);
+        val сvv = DataHelper.getValidCvv();
+        buyPage.fillForm(cardNumber, month, year, holder, сvv);
         buyPage.checkWrongFormatError();
     }
 
@@ -232,8 +232,8 @@ public class BuyTests {
         val month = DataHelper.getValidMonth();
         val year = DataHelper.getContainingTextYear();
         val holder = DataHelper.getValidHolder();
-        val Cvv = DataHelper.getValidCvv();
-        buyPage.fillForm(cardNumber, month, year, holder, Cvv);
+        val сvv = DataHelper.getValidCvv();
+        buyPage.fillForm(cardNumber, month, year, holder, сvv);
         buyPage.checkInvalidCharactersError();
     }
 
@@ -244,9 +244,9 @@ public class BuyTests {
         val cardNumber = DataHelper.getFirstCard();
         val month = DataHelper.getValidMonth();
         val year = DataHelper.getValidYear();
-        val holder = DataHelper.getEmptyHolder();
-        val Cvv = DataHelper.getValidCvv();
-        buyPage.fillForm(cardNumber, month, year, holder, Cvv);
+        val holder = DataHelper.getEmptyFieldValue();
+        val сvv = DataHelper.getValidCvv();
+        buyPage.fillForm(cardNumber, month, year, holder, сvv);
         buyPage.checkMandatoryFieldError();
     }
 
@@ -257,8 +257,8 @@ public class BuyTests {
         val month = DataHelper.getValidMonth();
         val year = DataHelper.getValidYear();
         val holder = DataHelper.getOnlyName();
-        val Cvv = DataHelper.getValidCvv();
-        buyPage.fillForm(cardNumber, month, year, holder, Cvv);
+        val сvv = DataHelper.getValidCvv();
+        buyPage.fillForm(cardNumber, month, year, holder, сvv);
         buyPage.checkWrongFormatError();
     }
 
@@ -269,8 +269,8 @@ public class BuyTests {
         val month = DataHelper.getValidMonth();
         val year = DataHelper.getValidYear();
         val holder = DataHelper.getLowercaseLettersHolder();
-        val Cvv = DataHelper.getValidCvv();
-        buyPage.fillForm(cardNumber, month, year, holder, Cvv);
+        val сvv = DataHelper.getValidCvv();
+        buyPage.fillForm(cardNumber, month, year, holder, сvv);
         buyPage.checkWrongFormatError();
     }
 
@@ -281,8 +281,8 @@ public class BuyTests {
         val month = DataHelper.getValidMonth();
         val year = DataHelper.getValidYear();
         val holder = DataHelper.getWithSurnameHolder();
-        val Cvv = DataHelper.getValidCvv();
-        buyPage.fillForm(cardNumber, month, year, holder, Cvv);
+        val сvv = DataHelper.getValidCvv();
+        buyPage.fillForm(cardNumber, month, year, holder, сvv);
         buyPage.checkWrongFormatError();
     }
 
@@ -293,8 +293,8 @@ public class BuyTests {
         val month = DataHelper.getValidMonth();
         val year = DataHelper.getValidYear();
         val holder = DataHelper.getRussianHolder();
-        val Cvv = DataHelper.getValidCvv();
-        buyPage.fillForm(cardNumber, month, year, holder, Cvv);
+        val сvv = DataHelper.getValidCvv();
+        buyPage.fillForm(cardNumber, month, year, holder, сvv);
         buyPage.checkInvalidCharactersError();
     }
 
@@ -305,8 +305,8 @@ public class BuyTests {
         val month = DataHelper.getValidMonth();
         val year = DataHelper.getValidYear();
         val holder = DataHelper.getMixedHolder();
-        val Cvv = DataHelper.getValidCvv();
-        buyPage.fillForm(cardNumber, month, year, holder, Cvv);
+        val сvv = DataHelper.getValidCvv();
+        buyPage.fillForm(cardNumber, month, year, holder, сvv);
         buyPage.checkInvalidCharactersError();
     }
 
@@ -317,8 +317,8 @@ public class BuyTests {
         val month = DataHelper.getValidMonth();
         val year = DataHelper.getValidYear();
         val holder = DataHelper.getDigitsHolder();
-        val Cvv = DataHelper.getValidCvv();
-        buyPage.fillForm(cardNumber, month, year, holder, Cvv);
+        val сvv = DataHelper.getValidCvv();
+        buyPage.fillForm(cardNumber, month, year, holder, сvv);
         buyPage.checkInvalidCharactersError();
     }
 
@@ -329,8 +329,8 @@ public class BuyTests {
         val month = DataHelper.getValidMonth();
         val year = DataHelper.getValidYear();
         val holder = DataHelper.getCharsHolder();
-        val Cvv = DataHelper.getValidCvv();
-        buyPage.fillForm(cardNumber, month, year, holder, Cvv);
+        val сvv = DataHelper.getValidCvv();
+        buyPage.fillForm(cardNumber, month, year, holder, сvv);
         buyPage.checkInvalidCharactersError();
     }
 
@@ -342,8 +342,8 @@ public class BuyTests {
         val month = DataHelper.getValidMonth();
         val year = DataHelper.getValidYear();
         val holder = DataHelper.getValidHolder();
-        val Cvv = DataHelper.getEmptyCvv();
-        buyPage.fillForm(cardNumber, month, year, holder, Cvv);
+        val сvv = DataHelper.getEmptyFieldValue();
+        buyPage.fillForm(cardNumber, month, year, holder, сvv);
         buyPage.checkMandatoryFieldError();
     }
 
@@ -354,8 +354,8 @@ public class BuyTests {
         val month = DataHelper.getValidMonth();
         val year = DataHelper.getValidYear();
         val holder = DataHelper.getValidHolder();
-        val Cvv = DataHelper.getShortCvv();
-        buyPage.fillForm(cardNumber, month, year, holder, Cvv);
+        val сvv = DataHelper.getShortCvv();
+        buyPage.fillForm(cardNumber, month, year, holder, сvv);
         buyPage.checkWrongFormatError();
     }
 
@@ -366,8 +366,8 @@ public class BuyTests {
         val month = DataHelper.getValidMonth();
         val year = DataHelper.getValidYear();
         val holder = DataHelper.getValidHolder();
-        val Cvv = DataHelper.getTextCvv();
-        buyPage.fillForm(cardNumber, month, year, holder, Cvv);
+        val сvv = DataHelper.getTextCvv();
+        buyPage.fillForm(cardNumber, month, year, holder, сvv);
         buyPage.checkInvalidCharactersError();
     }
 }

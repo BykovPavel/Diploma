@@ -29,7 +29,7 @@ public class DataHelper {
         return "DECLINED";
     }
 
-    public static String getEmptyCard() {
+    public static String getEmptyFieldValue() {
         return "";
     }
 
@@ -50,7 +50,7 @@ public class DataHelper {
     }
 
     public static String getValidMonth() {
-        return LocalDate.now().format(DateTimeFormatter.ofPattern("MM"));
+        return LocalDate.now().plusMonths(1).format(DateTimeFormatter.ofPattern("MM"));
     }
 
     public static String getThirteenthMonth() {
@@ -65,28 +65,20 @@ public class DataHelper {
         return "1";
     }
 
-    public static String getEmptyMonth() {
-        return "";
-    }
-
     public static String getContainingTextMonth() {
         return "Январь";
     }
 
     public static String getValidYear() {
-        return LocalDate.now().format(DateTimeFormatter.ofPattern("YY"));
+        return LocalDate.now().format(DateTimeFormatter.ofPattern("yy"));
     }
 
     public static String getInvalidYear() {
-        return LocalDate.now().minusYears(1).format(DateTimeFormatter.ofPattern("YY"));
+        return LocalDate.now().minusYears(1).format(DateTimeFormatter.ofPattern("yy"));
     }
 
     public static String getInvalidFormatYear() {
         return "1";
-    }
-
-    public static String getEmptyYear() {
-        return "";
     }
 
     public static String getContainingTextYear() {
@@ -121,20 +113,12 @@ public class DataHelper {
         return "55555";
     }
 
-    public static String getEmptyHolder() {
-        return "";
-    }
-
     public static String getCharsHolder() {
         return "???";
     }
 
     public static String getValidCvv() {
         return fakerEn.number().digits(3);
-    }
-
-    public static String getEmptyCvv() {
-        return "";
     }
 
     public static String getShortCvv() {

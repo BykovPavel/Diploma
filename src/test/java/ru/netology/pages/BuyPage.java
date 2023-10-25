@@ -47,23 +47,23 @@ public class BuyPage {
     }
 
     public void checkMandatoryFieldError() {
-        mandatoryFieldError.shouldBe(Condition.visible, Duration.ofSeconds(7));
+        mandatoryFieldError.shouldBe(Condition.visible);
     }
 
     public void checkWrongFormatError() {
-        wrongFormatError.shouldBe(Condition.visible, Duration.ofSeconds(7));
+        wrongFormatError.shouldBe(Condition.visible);
     }
 
     public void checkInvalidCharactersError() {
-        invalidCharactersError.shouldBe(Condition.visible, Duration.ofSeconds(7));
+        invalidCharactersError.shouldBe(Condition.visible);
     }
 
     public void checkWrongCardExpirationError() {
-        wrongCardExpirationError.shouldBe(Condition.visible, Duration.ofSeconds(7));
+        wrongCardExpirationError.shouldBe(Condition.visible);
     }
 
     public void checkCardExpiredError() {
-        cardExpiredError.shouldBe(Condition.visible, Duration.ofSeconds(7));
+        cardExpiredError.shouldBe(Condition.visible);
     }
 
 }
